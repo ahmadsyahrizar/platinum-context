@@ -5,16 +5,16 @@ export const UserContext = createContext(null);
 
 // Provider =>
 const UserProvider = ({ children }) => {
-    // custom hooks
+  // custom hooks
   const { data: dataUser, loading, error } = useGetUsers();
-  const [showCard, setShowCard] = useState(false)
+  const [showCard, setShowCard] = useState(false);
 
   const userObj = {
     dataUser: dataUser?.data,
     loading,
     error,
-    setShowCard, 
-    showCard
+    setShowCard,
+    showCard,
   };
 
   return (
