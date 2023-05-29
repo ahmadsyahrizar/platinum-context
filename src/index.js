@@ -5,8 +5,10 @@ import App from "./routes/App";
 import AuthProvider from "./context/auth";
 import reportWebVitals from "./reportWebVitals";
 import UserProvider from "./context/user";
-
+import { Chart, registerables } from "chart.js";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+Chart.register(...registerables)
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
