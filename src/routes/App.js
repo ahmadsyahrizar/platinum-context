@@ -5,13 +5,14 @@ import LandingPage from './customer/LandingPage'
 import TodoAppWebStorage from './customer/TodoAppWebstorage'
 import Admin from './admin'
 
-// NESTED ROUTES
+// 1. if Roles === customer then avoid them to access all routes under prefix /admin/*
 
 const App = () => {
   return (
     <Router>
       <Switch>
         {/* customer */}
+        <Route exact path={'/sign-up'} component={SignIn} />
         <Route exact path={'/sign-in'} component={SignIn} />
         <Route exact path={'/todolist'} component={TodoAppWebStorage} />
         <Route exact path={'/'} component={LandingPage} />

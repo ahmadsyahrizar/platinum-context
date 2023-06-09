@@ -1,21 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DOMAIN_API } from '../constants'
 import fetchAPI from '../helpers/fetchAPI'
 
 // DESIGN PATTERN
 
 const useAuth = () => {
-  // const getLocalStorage = localStorage.getItem("dataAuth");
+  const getLocalStorage = localStorage.getItem('dataAuth')
 
-  // const [dataAuth, setAuth] = useState({});
+  const [dataAuth, setAuth] = useState({})
   const [loading, setLoading] = useState(false)
 
   // //  ketika local storage nya ada, maka update state dengan data dari local storage
-  // useEffect(() => {
-  //   if (getLocalStorage) {
-  //     setAuth(JSON.parse(getLocalStorage));
-  //   }
-  // }, [getLocalStorage]);
+  useEffect(() => {
+    if (getLocalStorage) {
+      setAuth(JSON.parse(getLocalStorage))
+    }
+  }, [getLocalStorage])
 
   // hit API ketika klik submit button
   // ACTION
@@ -24,7 +24,9 @@ const useAuth = () => {
     const apiURL = `${DOMAIN_API}/customer/auth/login`
     fetchAPI(param, apiURL).then((result) => {
       setLoading(false)
-      const accessToken = result.access_token
+      const { access_token: accessToken, email, role } = result || {}
+
+      localStorage.setItem('dataAuth', JSON.stringify({ email, role }))
       document.cookie = `uidTokenBinarApp=${accessToken};max-age=600`
     })
   }
@@ -47,8 +49,8 @@ const useAuth = () => {
   return [
     postAuth,
     {
-      loading
-      // dataAuth,
+      loading,
+      dataAuth
     }
   ]
 }

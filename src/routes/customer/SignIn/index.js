@@ -1,22 +1,31 @@
+import { GoogleLogin } from '@react-oauth/google'
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
+
 import Form from './Form'
 
 const SignIn = () => {
-  // const [, data] = useContext(AuthContext);
-  // const { access_token, name } = data?.dataAuth || {};
-  // const error = name === "Not Found";
-  console.log({ cookie: document.cookie })
-
   if (document.cookie) return <Redirect to={'/'} />
 
   return (
     <Container>
       <h3>Welcome Back</h3>
-
       <Form />
-      {/* {error && <Alert variant="danger">Sign In Failed! try again</Alert>} */}
+
+      <hr />
+      <p>or login with Google</p>
+      <hr />
+      <div>
+        <GoogleLogin
+          onSuccess={() => {
+            return <Redirect to="/" />
+          }}
+          onError={() => {
+            console.log('Login Failed')
+          }}
+        />
+      </div>
     </Container>
   )
 }
