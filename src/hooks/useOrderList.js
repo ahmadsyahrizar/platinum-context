@@ -24,6 +24,7 @@ const useGetUsers = () => {
     data,
     loading,
     error
+
   }
 }
 

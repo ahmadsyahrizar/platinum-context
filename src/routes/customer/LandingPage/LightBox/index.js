@@ -1,10 +1,11 @@
-import ModalImage from "react-modal-image";
+import React from 'react'
+import ModalImage from 'react-modal-image'
 
-const smallImage = "https://aautio.github.io/react-modal-image/example_img_small.jpg"
-const mdImage =  "https://aautio.github.io/react-modal-image/example_img_medium.jpg"
+const smallImage = 'https://aautio.github.io/react-modal-image/example_img_small.jpg'
+const mdImage = 'https://aautio.github.io/react-modal-image/example_img_medium.jpg'
 
 const LighthBox = () => {
-    return (
+  return (
         <ModalImage
             small={smallImage}
             medium={mdImage}
@@ -13,8 +14,7 @@ const LighthBox = () => {
             hideZoom
             showRotate
         />
-    )
+  )
 }
 
-
-export default LighthBox;
+export default LighthBox

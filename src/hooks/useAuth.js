@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { DOMAIN_API } from "../constants";
-import fetchAPI from "../helpers/fetchAPI";
+import { useState } from 'react'
+import { DOMAIN_API } from '../constants'
+import fetchAPI from '../helpers/fetchAPI'
 
 // DESIGN PATTERN
 
@@ -8,7 +8,7 @@ const useAuth = () => {
   // const getLocalStorage = localStorage.getItem("dataAuth");
 
   // const [dataAuth, setAuth] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   // //  ketika local storage nya ada, maka update state dengan data dari local storage
   // useEffect(() => {
@@ -20,15 +20,14 @@ const useAuth = () => {
   // hit API ketika klik submit button
   // ACTION
   const postAuth = (param) => {
-    setLoading(true);
-    const apiURL = `${DOMAIN_API}/customer/auth/login`;
+    setLoading(true)
+    const apiURL = `${DOMAIN_API}/customer/auth/login`
     fetchAPI(param, apiURL).then((result) => {
-      setLoading(false);
-      const accessToken = result.access_token;
-      document.cookie = `uidTokenBinarApp=${accessToken};max-age=60`;
-      // localStorage.setItem("dataAuth", JSON.stringify(result));
-    });
-  };
+      setLoading(false)
+      const accessToken = result.access_token
+      document.cookie = `uidTokenBinarApp=${accessToken};max-age=600`
+    })
+  }
 
   // HIT POST USER LOGIN => ACCESS TOKEN, ||
   // HIT GET DATA USER LOGIN => EMAIL, USERNAME, PASSWORD
@@ -48,10 +47,10 @@ const useAuth = () => {
   return [
     postAuth,
     {
-      loading,
+      loading
       // dataAuth,
-    },
-  ];
-};
+    }
+  ]
+}
 
-export default useAuth;
+export default useAuth
